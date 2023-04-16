@@ -117,7 +117,7 @@ public class Login {
                     "\n\t==============================================================" +
                             "\n\t|| ADMIN MENU                                               ||" +
                             "\n\t||==========================================================||" +
-                            "\n\t|| [1]. VIEW RESTAURANT                                     ||" +
+                            "\n\t|| [1]. VIEW RESTAURANTS                                    ||" +
                             "\n\t|| [2]. ADD RESTAURANT                                      ||" +
                             "\n\t|| [3]. REMOVE RESTAURANT                                   ||" +
                             "\n\t||==========================================================||" +
@@ -159,7 +159,7 @@ public class Login {
         }
     }
 
-    private static void viewRestaurants() {
+    public static void viewRestaurants() {
     }
 
     private static void addRestaurant(Scanner scanner2) {
@@ -216,8 +216,60 @@ public class Login {
         }
     }
     private static void customerMenu(Scanner scanner2) throws IOException, InterruptedException{
-        System.out.println("Bagian ini belum dibuat");
+        boolean isDone = false;
+        while (!isDone) {
+            System.out.println(
+                    "\n\t==============================================================" +
+                            "\n\t|| CUSTOMER MENU                                            ||" +
+                            "\n\t||==========================================================||" +
+                            "\n\t|| [1]. VIEW RESTAURANTS                                    ||" +
+                            "\n\t|| [2]. MAKE ORDER                                          ||" +
+                            "\n\t|| [3]. VIEW ORDER                                          ||" +
+                            "\n\t||==========================================================||" +
+                            "\n\t|| [0]. EXIT PROGRAM                                        ||" +
+                            "\n\t||==========================================================||"
+            );
+            System.out.print(
+                    "\n\t||==========================================================||" +
+                            "\n\t|| MASUKKAN PILIHAN ANDA:"
+            );
+            int choice = scanner2.nextInt();
+            close();
+            switch (choice) {
+                case 1:
+                    viewRestaurants();
+                    break;
+                case 2:
+                    makeOrder(scanner);
+                    break;
+                case 3:
+                    viewOrder(scanner);
+                    break;
+                case 0:
+                    isDone = true;
+                    System.out.print(
+                            "\n\t||==========================================================||" +
+                                    "\n\t|| Anda telah berhasil keluar dari program.                 ||" +
+                                    "\n\t||==========================================================||"
+                    );
+                    break;
+                default:
+                    System.out.print(
+                            "\n\t||==========================================================||" +
+                                    "\n\t|| Harap inputkan pilihan yang benar.                       ||" +
+                                    "\n\t||==========================================================||"
+                    );
+                    break;
+            }
+        }
     }
+
+    private static void makeOrder(Scanner scanner2) {
+    }
+
+    private static void viewOrder(Scanner scanner2) {
+    }
+
     private static void awal() throws IOException, InterruptedException{
         System.out.println(
                 "\n\t==============================================================" +
