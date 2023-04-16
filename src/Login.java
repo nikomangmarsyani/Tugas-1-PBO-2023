@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 public class Login {
     public static Scanner scanner = new Scanner(System.in);
@@ -5,7 +6,7 @@ public class Login {
     private static String adminPassword = "admin1234";
     private static String customerUsername = "customer";
     private static String customerPassword = "customer1234";
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InterruptedException{
         awal();
         loginMenu(scanner);
         loginAdmin(scanner);
@@ -16,7 +17,7 @@ public class Login {
         clearScreen();
     }
 
-    private static void loginMenu(Scanner scanner){
+    private static void loginMenu(Scanner scanner) throws IOException, InterruptedException{
         boolean isDone = false;
         while(!isDone){
             System.out.println(
@@ -61,7 +62,7 @@ public class Login {
             }
         }
     }
-    private static void loginAdmin(Scanner scanner){
+    private static void loginAdmin(Scanner scanner) throws IOException, InterruptedException{
         boolean isLoggedIn = false;
         String username, password;
         while (!isLoggedIn) {
@@ -108,10 +109,66 @@ public class Login {
             }
         }
     }
-    private static void adminMenu(Scanner scanner2) {
-        System.out.println("Bagian ini belum dibuat");
+    private static void adminMenu(Scanner scanner2) throws IOException, InterruptedException{
+
+        boolean isDone = false;
+        while (!isDone) {
+            System.out.println(
+                    "\n\t==============================================================" +
+                            "\n\t|| ADMIN MENU                                               ||" +
+                            "\n\t||==========================================================||" +
+                            "\n\t|| [1]. VIEW RESTAURANT                                     ||" +
+                            "\n\t|| [2]. ADD RESTAURANT                                      ||" +
+                            "\n\t|| [3]. REMOVE RESTAURANT                                   ||" +
+                            "\n\t||==========================================================||" +
+                            "\n\t|| [0]. EXIT PROGRAM                                        ||" +
+                            "\n\t||==========================================================||"
+            );
+            System.out.print(
+                    "\n\t||==========================================================||" +
+                            "\n\t|| MASUKKAN PILIHAN ANDA:"
+            );
+            int choice = scanner2.nextInt();
+            close();
+            switch (choice) {
+                case 1:
+                    viewRestaurants();
+                    break;
+                case 2:
+                    addRestaurant(scanner);
+                    break;
+                case 3:
+                    removeRestaurant(scanner);
+                    break;
+                case 0:
+                    isDone = true;
+                    System.out.print(
+                            "\n\t||==========================================================||" +
+                                    "\n\t|| Anda telah berhasil keluar dari program.                 ||" +
+                                    "\n\t||==========================================================||"
+                    );
+                    break;
+                default:
+                    System.out.print(
+                            "\n\t||==========================================================||" +
+                                    "\n\t|| Harap inputkan pilihan yang benar.                       ||" +
+                                    "\n\t||==========================================================||"
+                    );
+                    break;
+            }
+        }
     }
-    private static void loginCustomer(Scanner scanner){
+
+    private static void viewRestaurants() {
+    }
+
+    private static void addRestaurant(Scanner scanner2) {
+    }
+
+    private static void removeRestaurant(Scanner scanner2) {
+    }
+
+    private static void loginCustomer(Scanner scanner) throws IOException, InterruptedException{
         boolean isLoggedIn = false;
         String username, password;
         while (!isLoggedIn) {
@@ -158,10 +215,10 @@ public class Login {
             }
         }
     }
-    private static void customerMenu(Scanner scanner2) {
+    private static void customerMenu(Scanner scanner2) throws IOException, InterruptedException{
         System.out.println("Bagian ini belum dibuat");
     }
-    private static void awal(){
+    private static void awal() throws IOException, InterruptedException{
         System.out.println(
                 "\n\t==============================================================" +
                         "\n\t||                                                          ||" +
@@ -187,7 +244,7 @@ public class Login {
         close();
 
     }
-    public static void close() {
+    public static void close() throws IOException, InterruptedException{
 
         System.out.println("\n\tBerikutnya...");
         System.out.println("\n\tTekan Enter untuk Melanjutkan...");
@@ -195,7 +252,7 @@ public class Login {
         clearScreen();
     }
 
-    public static void clearScreen() {
+    public static void clearScreen() throws IOException, InterruptedException{
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
