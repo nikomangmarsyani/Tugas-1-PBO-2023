@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7466555d-5335-45b1-b01c-0fdb6c798d58" name="Changes" comment="menambahkan menu customer">
+    <list default="true" id="7466555d-5335-45b1-b01c-0fdb6c798d58" name="Changes" comment="menambahkan fitur admin">
       <change afterPath="$PROJECT_DIR$/src/Resto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
@@ -69,13 +69,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681622844493</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="menambahkan fitur admin">
+      <created>1681639326090</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681639326090</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="menambahkan menu admin" />
     <MESSAGE value="menambahkan menu customer" />
-    <option name="LAST_COMMIT_MESSAGE" value="menambahkan menu customer" />
+    <MESSAGE value="menambahkan fitur admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="menambahkan fitur admin" />
   </component>
 </project>

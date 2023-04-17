@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.io.IOException;
 import java.util.Scanner;
+
 public class Login {
     public static Scanner scanner = new Scanner(System.in);
     public static ArrayList<Restoran> restoran = new ArrayList<>();
@@ -22,7 +24,6 @@ public class Login {
         lihatPesanan();
         totalPesanan();
         close();
-        clearScreen();
     }
 
     private static void loginMenu(Scanner scanner) throws IOException, InterruptedException{
@@ -367,13 +368,70 @@ public class Login {
         }
     }
 
-    private static void totalPesanan(){
+    private static void buatPesanan(Scanner scanner) throws IOException, InterruptedException {
 
-    }
-    private static void buatPesanan(Scanner scanner2) {
+        lihatRestoran();
+        System.out.print(
+                "\n\t||==========================================================||"+
+                        "\n\t|| INPUTKAN ID RESTORAN:"
+        );
+        int id_restoran = scanner.nextInt();
+        System.out.print(
+                "\n\t||==========================================================||"+
+                        "\n\t|| INPUTKAN ID MENU: "
+        );
+        int id_menu = scanner.nextInt();
+        System.out.print(
+                "\n\t||==========================================================||"+
+                        "\n\t|| INPUTKAN KUANTITAS MAKANAN: "
+        );
+        int quantity = scanner.nextInt();
+        pesanan.add(
+                new Pesanan(
+                        id_restoran,
+                        id_menu,
+                        quantity,
+                        1 + Math.random()*10,
+                        id_menu == 1?restoran.get(id_restoran-1).menu.priceFood*quantity : restoran.get(id_restoran-1).menu.priceDrink*quantity
+                )
+        );
+        close();
     }
 
-    private static void lihatPesanan() {
+    private static void lihatPesanan() throws IOException, InterruptedException {
+        if(pesanan.size() == 0){
+            System.out.print(
+                    "\n\t||==========================================================||" +
+                            "\n\t|| TIDAK ADA PESANAN                                        ||" +
+                            "\n\t||==========================================================||"
+            );
+            close();
+        }else{
+            System.out.print(
+                    "\n\t||==========================================================||" +
+                            "\n\t|| PESANAN                                                  ||" +
+                            "\n\t||==========================================================||" +
+                            "\n\t|| ID RESTORAN || ID MENU || QUANTITY || DISTANCE || TOTAL    "
+            );
+            for(int i = 0; i < pesanan.size(); i++){
+                System.out.println(
+                        "\n\t||\t " + pesanan.get(i).id_restoran + "\t\t" + pesanan.get(i).id_menu + "\t  " +
+                                pesanan.get(i).quantity + "\t\t" + (int)pesanan.get(i).distance  + " km " + "\tRp." + pesanan.get(i).total_price
+                );
+            }
+        }
+    }
+
+    public static void totalPesanan() throws IOException, InterruptedException {
+        lihatPesanan();
+        int allPrice = 0;
+        for(int i = 0; i < pesanan.size(); i++){
+            allPrice += pesanan.get(i).total_price;
+        }
+        System.out.print(
+                "\n\t||Total Order\t\t\t\t\t\tRp." + allPrice
+        );
+        close();
     }
 
     private static void awal() throws IOException, InterruptedException{
@@ -404,15 +462,83 @@ public class Login {
     }
     public static void close() throws IOException, InterruptedException{
 
+        System.in.read();
         System.out.println("\n\tBerikutnya...");
         System.out.println("\n\tTekan Enter untuk Melanjutkan...");
-        scanner.nextLine();
-        clearScreen();
+        System.in.read();
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
     }
 
-    public static void clearScreen() throws IOException, InterruptedException{
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+}
+
+class Restoran{
+
+    String name;
+    String address;
+    Menu menu;
+    int id = 1;
+    public Restoran(String name, String address, Menu menu) {
+
+        this.name = name;
+        this.address = address;
+        this.menu = menu;
+        id++;
     }
 
+    public String getName() {
+
+        return this.name;
+    }
+}
+class Menu{
+
+    String food;
+    String drink;
+    double priceFood;
+    double priceDrink;
+
+    public Menu(String food, String drink, double priceFood, double priceDrink){
+
+        this.food = food;
+        this.drink = drink;
+        this.priceFood = priceFood;
+        this.priceDrink = priceDrink;
+    }
+
+    public String getFood(){
+
+        return this.food;
+    }
+
+    public String getDrink(){
+
+        return this.drink;
+    }
+
+    public double getPriceFood(){
+
+        return this.priceFood;
+    }
+
+    public double getPriceDrink(){
+
+        return this.priceDrink;
+    }
+}
+class Pesanan{
+
+    int id_restoran;
+    int id_menu;
+    int quantity;
+    double distance;
+    double total_price;
+
+    public Pesanan(int id_restoran, int id_menu, int quantity, double distance, double total_price){
+
+        this.id_restoran = id_restoran;
+        this.id_menu = id_menu;
+        this.quantity = quantity;
+        this.distance = distance;
+        this.total_price = total_price;
+    }
 }
